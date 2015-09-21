@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="shakeCss.css">
+    <link rel="stylesheet" type="text/css" href="csshake.min.css">
+    <script src="http://7xav25.com1.z0.glb.clouddn.com/libs/seajs/3.0.0/sea-jquery.js"></script>
+    <script src="shake.js"></script>
+    <script type="text/javascript">
+        var myShakeEvent = new Shake({
+            threshold: 15, // 摇动阈值
+            timeout: 1000 // 事件发生频率，是可选值
+        });
+        myShakeEvent.start();
+        window.addEventListener('shake', shakeEventDidOccur, false);
+        var i = 0;
+        function shakeEventDidOccur () {//回调函数
+            doProgress();
+            i=i+9;
+        }
+        function setProgress(progress){
+            if(progress) {
+                $("#load").css("width", progress + "%");
+            }
+        }
+
+
+        function doProgress(){
+            if(i >= 100){
+                window.location.href="http://120.26.81.95/result.html";
+            }
+            if(i < 100){
+                setTimeout("doProgress()", 100);
+                setProgress(i);
+
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+<div id="box">
+    <span id="logo1" class="shake shake-slow shake-constant"><img src="img/shake.svg"></span>
+    <div id="font1"><img src="img/shakeFont.svg"> </div>
+    <div id="circle"><div id="load"></div></div>
+</div>
+</body>
+</html>
